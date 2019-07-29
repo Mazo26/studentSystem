@@ -28,10 +28,10 @@ class Student {
         $this->mathGrade = $mathGrade;
         $this->historyGrade = $historyGrade;
 
-        $this->numberofGrades = array();
+        $this->numberofGrades = array(); //array which takes grades
 
         if(!is_null($this->physicsGrade)){
-            array_push($this->numberofGrades, $this->physicsGrade);
+            array_push($this->numberofGrades, $this->physicsGrade); //if grade exists, put it in array 
         }
         if(!is_null($this->algorithmsGrade)){
             array_push($this->numberofGrades, $this->algorithmsGrade);
@@ -43,25 +43,18 @@ class Student {
             array_push($this->numberofGrades, $this->historyGrade);
         }
 
-        $this->averageGrade = ($this->physicsGrade + $this->algorithmsGrade + $this->mathGrade + $this->historyGrade) / count($this->numberofGrades);
+        $this->averageGrade = ($this->physicsGrade + $this->algorithmsGrade + $this->mathGrade + $this->historyGrade) / count($this->numberofGrades); //average grade
 
-       
         
     }
 
     function isPassed(){
 
-        if($this->schoolBoard == "CSM" && $this->averageGrade >= 7){
+
+        if($this->schoolBoard == "CSMB" && max($this->numberofGrades) >= 8 && count($this->numberofGrades)>2){
             $this->isPassed = "PASSED";
             return $this->isPassed;
-        }else{
-            $this->isPassed = "Failed";
-            return $this->isPassed;
-        }
-
-        $CSMB = rsort($this->numberofGrades);
-
-        if($this->schoolBoard == "CSMB" && $CSMB[0] >= 8 && count($CSMB)>2){
+        }else if($this->schoolBoard == "CSM" && $this->averageGrade >= 7){
             $this->isPassed = "PASSED";
             return $this->isPassed;
         }else{
